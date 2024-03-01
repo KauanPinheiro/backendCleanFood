@@ -276,7 +276,7 @@ update tbpassos set descricao = "Depois adicionar complemento ao seu gosto atual
 
 
 
--- Buscando dados 
+-- Buscando dado
 
 select * from tbusuarios;
 select * from tbclientes;
