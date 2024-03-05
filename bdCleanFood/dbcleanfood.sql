@@ -264,16 +264,20 @@ update tbpassos set tempodePreparo = "0h00 min" where codReceita = 5;
 
 -- Apagando dados 
 
-delete from tbavaliacoes where codReceita = 3;
-
-delete from tbingredientes where  = 3;
+delete from tbpassos where codReceita = 5; 
+delete from tbquantidades where codMedida = 5;
+delete from tbmedidas where codMedida = 5;
+delete from tbingredientes where codIngrediente = 5;
+delete from tbavaliacoes where codAvaliacao = 5;
+delete from tbreceitas where codReceita = 5;
+delete from tbclientes where codCliente = 5;
+delete from tbusuarios where codUsuario = 5;
 
 
 
 
 -- Buscando dados 
 
- 
 
 select * from tbusuarios;
 select * from tbclientes;
