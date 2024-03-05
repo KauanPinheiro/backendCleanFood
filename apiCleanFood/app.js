@@ -15,8 +15,16 @@ app.listen(port, () => {
 
 // Verificando se o app está funcionado 
 app.get('/', (req,res) => {
-    res.json({mensagem: 'Oba! rodou :)'})
+    res.json({mensagem: 'Oba! rodou :) agora vamos aos trabalhos'})
 });
 
+app.use(express());
 
+//Importando as rotas
+const avaliacoesRouters = require('./routers/avaliacoesRouters');
+app.use('/avaliacoes',avaliacoesRouters);
+
+//Importando a rota de usuarios
+const usuariosRouters = require('./routers/usuariosRouters');
+app.use('/usuarios',usuariosRouters);
 
