@@ -7,7 +7,6 @@ const app = express();
 // definindo a porta na qual o servidor vai rodar 
 const port = 3000;
 
-
 // Verificando se a porta está funcionando 
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`)
