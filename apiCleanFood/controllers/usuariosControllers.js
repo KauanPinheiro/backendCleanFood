@@ -16,16 +16,47 @@ router.get('/', (req,res) => {
         });
 });
 
-router.delete('/:id', (req,res) => {
-    const {id} = req.params;
-    const queryDel = 'DELETE FROM tbusuarios WHERE id = ?';
+//Apagando o usuario do banco pelo ID
+router.delete('/:codUsuario', (req,res) => {
+    const {codUsuario} = req.params;
+    const queryDel = 'DELETE FROM tbusuarios WHERE codUsuario = ?';
 
-    dbConexao.query(queryDel, [id], (err,result) => {
-        if(err) {
-            res.status(500).json({mensagem: 'Erro ao adicionar'})
-        }
+    dbConexao.query(queryDel, [codUsuario], (err,result) => {
+        if (err) throw err;
+            res.status(201).json({
+                    mensagem: `Usuário de codUsuario: ${codUsuario}, deletado com sucesso!`
+            })
     })
-})
+});
+
+//Atualizando a os dados de uma tabela 
+router.put('/:cod', (req,res) => {
+    const {cod} = req.params;
+    // const {codUsuario,datanasc,endereco,cidade,bairro,cep,nome,cpf,email,telCel,senha} = req.body;
+    // const query = `update tbUsuarios set datanasc = ?, endereco = ?, cidade = ?, bairro = ?, cep = ?, nome = ?, cpf =?, email =?, telCel = ?, senha = ?
+    // WHERE codUsuario = 2`;
+    const [codUsuario, datanasc] = req.body;
+    const query = 'update tbUsuarios set codUsuario = ?,  datanasc = ? where codUsuario = 2';
+
+
+    dbConexao.query(query, [codUsuario, datanasc, cod], (err) => {
+        if(err) throw err;
+            res.status(201).json({
+                mensagem: `Alteração feita com sucesso!`,
+                    envio:{
+                        codUsuario: codUsuario,
+                        datanasc: datanasc
+                        // endereco: endereco
+                        // cidade: cidade,
+                        // bairro: bairro,
+                        // cep: cep,
+                        // email: email,
+                        // telCel: telCel,
+                        // senha: senha
+                    }
+            })
+      })
+ });
 
 
 

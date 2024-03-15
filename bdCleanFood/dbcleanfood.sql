@@ -238,6 +238,10 @@ values("Fatie a abobrinha finamente e espelhe as fatias na assadeira","1h40 min"
 -- Atualizando dados na tbusuarios
 update tbusuarios set  nome = "Redriguinho atualizado" where codUsuario = 1;
 update tbusuarios set  nome = "Heloisa atualizada" where codUsuario = 2;
+UPDATE tbusuarios SET  datanasc = "2021/02/20", endereco = "test07", cidade = "test06", bairro = "test06", cep = "04858-260", nome = "test06", cpf ="540.079.798-98", email ="test06@gamil", telCel = "98754-4562", senha = "12345678"
+        WHERE codUsuario = 2;
+
+update tbusuarios SET  datanasc = "2021/02/20", endereco = "test07", cidade = "test06", bairro = "test06", cep = "04585-260" where codUsuario = 3;
 
 
 -- Atualizando dados na tbclients 
@@ -273,8 +277,15 @@ update tbpassos set mododePreparo = "Aqueca o forno e coloque uma forma dentro a
 update tbpassos set tempodePreparo = "5h atualizado com sucesso!" where codPasso = 2;
 update tbpassos set descricao = "Depois adicionar complemento ao seu gosto atualizado" where codPasso = 1;
 
-
-
+-- apagando os dados da tabela 
+delete from tbpassos where codReceita = 5; 
+delete from tbquantidades where codMedida = 5;
+delete from tbmedidas where codMedida = 5;
+delete from tbingredientes where codIngrediente = 5;
+delete from tbavaliacoes where codAvaliacao = 5;
+delete from tbreceitas where codReceita = 5;
+delete from tbclientes where codCliente = 5;
+delete from tbusuarios where codUsuario = 5;
 
 -- Buscando dados 
 
