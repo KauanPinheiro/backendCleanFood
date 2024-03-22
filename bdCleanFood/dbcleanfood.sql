@@ -43,10 +43,11 @@ codCliente int not null,
 primary key(codReceita),
 foreign key(codCliente)references tbclientes(codCliente)
 );
+select codReceita from tbreceitas where codReceita = 1;
 create table tbavaliacoes(
 codAvaliacao int not null auto_increment,
 comentario varchar(100) not null,
-dataComentario datetime not null,
+dataComentario date not null,
 codReceita int not null,
 primary key(codAvaliacao),
 foreign key(codReceita)references tbreceitas(codReceita)
@@ -166,6 +167,8 @@ values("Todo mundo aqui em casa adorou essa receita","2022/08/17 17:15:22",4);
 insert into tbavaliacoes(comentario,dataComentario,codReceita)
 values("Adorei demais essa receita","2023/07/18 21:45:37",5);
 
+
+select
 
 -- Insirindo dados na tbingredientes
 insert into tbingredientes(nomeIngrediente,rendeMedidas,codReceita)

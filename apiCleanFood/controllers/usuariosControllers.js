@@ -16,6 +16,25 @@ router.get('/', (req,res) => {
         });
 });
 
+// Insírindo dados no banco de dados
+router.post('/', (req,res) => {
+    const { datanasc,endereco,cidade,bairro,cep,nome,cpf,email,telCel,senha} = req.body;
+    const queryIst = 'insert into tbusuarios(datanasc,endereco,cidade,bairro,cep,nome,cpf,email,telCel,senha) values (?,?,?,?,?,?,?,?,?,?)'
+
+    dbConexao.query(queryIst, [ datanasc,endereco,cidade,bairro,cep,nome,cpf,email,telCel,senha], (err,result) => {
+        if(err) {
+            res.status(500).json({ mensagem: 'Erro ao adicionar produto'});
+        }else{
+            res.status(201).json({
+                mensagem: 'Produto adicionado!',
+                codUsuario: result.insertId,
+                body: req.body
+            })
+        }
+    })
+})
+
+
 //Apagando o usuario do banco pelo ID
 router.delete('/:codUsuario', (req,res) => {
     const {codUsuario} = req.params;
@@ -30,33 +49,30 @@ router.delete('/:codUsuario', (req,res) => {
 });
 
 //Atualizando a os dados de uma tabela 
-router.put('/:cod', (req,res) => {
+router.put('/:codUsuario', (req,res) => {
     const {cod} = req.params;
-    // const {codUsuario,datanasc,endereco,cidade,bairro,cep,nome,cpf,email,telCel,senha} = req.body;
-    // const query = `update tbUsuarios set datanasc = ?, endereco = ?, cidade = ?, bairro = ?, cep = ?, nome = ?, cpf =?, email =?, telCel = ?, senha = ?
-    // WHERE codUsuario = 2`;
-    const [codUsuario, datanasc] = req.body;
-    const query = 'update tbUsuarios set codUsuario = ?,  datanasc = ? where codUsuario = 2';
+    const {datanasc,endereco,cidade,bairro,cep,nome,cpf,email,telCel,senha} = req.body;
+    const queryPut = ` update tbusuarios set datanasc = ?, endereco = ?, cidade = ?, bairro = ?, cep = ?, nome = ?, cpf = ?, email = ?, telCel = ?, senha = ? where codUsuario = ?`
 
-
-    dbConexao.query(query, [codUsuario, datanasc, cod], (err) => {
+    dbConexao.query(queryPut, [datanasc,endereco,cidade,bairro,cep,nome,cpf,email,telCel,senha,cod], (err) => {
         if(err) throw err;
-            res.status(201).json({
-                mensagem: `Alteração feita com sucesso!`,
-                    envio:{
-                        codUsuario: codUsuario,
-                        datanasc: datanasc
-                        // endereco: endereco
-                        // cidade: cidade,
-                        // bairro: bairro,
-                        // cep: cep,
-                        // email: email,
-                        // telCel: telCel,
-                        // senha: senha
-                    }
-            })
-      })
- });
+        res.status(201).json({
+            mensagem: 'Alteração aplicada com sucesso!',
+                envio:{
+                    datanasc: datanasc,
+                    endereco: endereco,
+                    cidade: cidade,
+                    bairro: bairro,
+                    cep: cep,
+                    nome: nome,
+                    cpf: cpf,
+                    email: email,
+                    telCel: telCel,
+                    senha: senha
+                }
+        })
+    })
+})
 
 
 

@@ -16,7 +16,19 @@ router.get('/', (req,res) => {
                 res.json(result);
         })
 });
+router.post('/', (req,res) => {
+    const {comentario,dataComentario,codReceita} = req.body;
+    const queryIst = 'insert into tbavaliacoes (comentario,dataComentario,codReceita,{}) values (?,?,?)';
 
+    dbConexao.query(queryIst, [comentario,dataComentario, codReceita], (err) => {
+        if(err) throw err;
+        res.status(201).json({
+            mensagem: 'Comentário feito com sucesso!',
+            body:req.body
+        })
+    })
+
+})
 
 
 module.exports = router;
