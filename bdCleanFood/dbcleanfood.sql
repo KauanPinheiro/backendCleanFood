@@ -168,7 +168,7 @@ insert into tbavaliacoes(comentario,dataComentario,codReceita)
 values("Adorei demais essa receita","2023/07/18 21:45:37",5);
 
 
-select
+
 
 -- Insirindo dados na tbingredientes
 insert into tbingredientes(nomeIngrediente,rendeMedidas,codReceita)

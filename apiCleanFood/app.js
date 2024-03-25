@@ -21,10 +21,12 @@ app.get('/', (req,res) => {
 app.use(express.json());
 
 //Importando as rotas
-const avaliacoesRouters = require('./routers/avaliacoesRouters');
 const usuariosRouters = require('./routers/usuariosRouters');
+const clientesRouters = require('./routers/clientesRouters');
+
 
 
 app.use('/usuarios',usuariosRouters);
-app.use('/avaliacoes',avaliacoesRouters);
+app.use('/clientes', clientesRouters)
+
 
